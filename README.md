@@ -41,23 +41,23 @@ npm run dev
 '''
 
 ### Firebase Functions
-'''bash
-cd functions
+```bash
+cd frontend
 npm install
-firebase emulators:start
-'''
+npm run dev
+```
 
 ## Deploy Functions
-'''bash
+```bash
 firebase deploy --only functions
-'''
+```
 
 ## Build & Deploy Frontend to Cloud Run
-'''bash
+```bash
 cd frontend
 gcloud builds submit --tag gcr.io/YOUR_PROJECT_ID/frontend
 gcloud run deploy frontend --image gcr.io/YOUR_PROJECT_ID/frontend --platform managed --region europe-west1
-'''
+```
 
 ✉️ Contributing
 
