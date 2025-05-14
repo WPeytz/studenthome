@@ -25,20 +25,25 @@ StudentHome is a web-based platform that helps university students find housing 
 
 ## 📦 Project Structure
 StudentHome/
+
 ├── frontend/          # Vue.js app
+
 ├── functions/         # Firebase backend functions
+
 ├── firebase.json
+
 ├── .firebaserc
+
 └── README.md
 
 ## 🛠 Local Development
 
 ## Frontend
-'''bash
+```bash
 cd frontend
 npm install
 npm run dev
-'''
+```
 
 ## Firebase Functions
 ```bash
