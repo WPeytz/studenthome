@@ -34,31 +34,38 @@ StudentHome/
 ## 🛠 Local Development
 
 ### Frontend
-
-```bash
+'''bash
 cd frontend
 npm install
 npm run dev
+'''
 
-## Firebase Functions
-
+### Firebase Functions
+'''bash
 cd functions
 npm install
 firebase emulators:start
+'''
 
 ## Deploy Functions
+'''bash
 firebase deploy --only functions
+'''
 
 ## Build & Deploy Frontend to Cloud Run
+'''bash
 cd frontend
 gcloud builds submit --tag gcr.io/YOUR_PROJECT_ID/frontend
 gcloud run deploy frontend --image gcr.io/YOUR_PROJECT_ID/frontend --platform managed --region europe-west1
+'''
 
-## Contributing
+✉️ Contributing
 
 Feel free to fork the repo and submit PRs with improvements, fixes, or new features!
 
-## License
+📄 License
+
 MIT — do what you want, but don’t blame me if it breaks.
+
 
 Made by @WPeytz
