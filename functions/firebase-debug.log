@@ -1,0 +1,125 @@
+[debug] [2025-05-15T08:03:37.962Z] ----------------------------------------------------------------------
+[debug] [2025-05-15T08:03:37.963Z] Command:       /Users/williampeytz/.nvm/versions/node/v18.20.6/bin/node /Users/williampeytz/.nvm/versions/node/v18.20.6/bin/firebase deploy --only functions
+[debug] [2025-05-15T08:03:37.963Z] CLI Version:   13.35.1
+[debug] [2025-05-15T08:03:37.963Z] Platform:      darwin
+[debug] [2025-05-15T08:03:37.963Z] Node Version:  v18.20.6
+[debug] [2025-05-15T08:03:37.967Z] Time:          Thu May 15 2025 10:03:37 GMT+0200 (Central European Summer Time)
+[debug] [2025-05-15T08:03:37.967Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-05-15T08:03:38.069Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-05-15T08:03:38.070Z] > authorizing via signed-in user (contact@studenthome.dk)
+[debug] [2025-05-15T08:03:38.070Z] [iam] checking project housed-app for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2025-05-15T08:03:38.070Z] Checked if tokens are valid: true, expires at: 1747299761959
+[debug] [2025-05-15T08:03:38.070Z] Checked if tokens are valid: true, expires at: 1747299761959
+[debug] [2025-05-15T08:03:38.071Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/housed-app:testIamPermissions [none]
+[debug] [2025-05-15T08:03:38.071Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/housed-app:testIamPermissions x-goog-quota-user=projects/housed-app
+[debug] [2025-05-15T08:03:38.071Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/housed-app:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2025-05-15T08:03:38.889Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/housed-app:testIamPermissions 200
+[debug] [2025-05-15T08:03:38.889Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/housed-app:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2025-05-15T08:03:38.890Z] Checked if tokens are valid: true, expires at: 1747299761959
+[debug] [2025-05-15T08:03:38.890Z] Checked if tokens are valid: true, expires at: 1747299761959
+[debug] [2025-05-15T08:03:38.890Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/housed-app/serviceAccounts/housed-app@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2025-05-15T08:03:38.890Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/housed-app/serviceAccounts/housed-app@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2025-05-15T08:03:39.619Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/housed-app/serviceAccounts/housed-app@appspot.gserviceaccount.com:testIamPermissions 200
+[debug] [2025-05-15T08:03:39.619Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/housed-app/serviceAccounts/housed-app@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[info] 
+[info] === Deploying to 'housed-app'...
+[info] 
+[info] i  deploying functions 
+[debug] [2025-05-15T08:03:39.621Z] Checked if tokens are valid: true, expires at: 1747299761959
+[debug] [2025-05-15T08:03:39.621Z] Checked if tokens are valid: true, expires at: 1747299761959
+[debug] [2025-05-15T08:03:39.621Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/projects/housed-app [none]
+[debug] [2025-05-15T08:03:39.881Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/projects/housed-app 200
+[debug] [2025-05-15T08:03:39.881Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/projects/housed-app {"projectNumber":"689861315780","projectId":"housed-app","lifecycleState":"ACTIVE","name":"Housed","labels":{"firebase":"enabled","firebase-core":"disabled"},"createTime":"2025-05-14T17:07:19.142091Z"}
+[info] i  functions: preparing codebase default for deployment 
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[debug] [2025-05-15T08:03:39.884Z] Checked if tokens are valid: true, expires at: 1747299761959
+[debug] [2025-05-15T08:03:39.884Z] Checked if tokens are valid: true, expires at: 1747299761959
+[debug] [2025-05-15T08:03:39.884Z] Checked if tokens are valid: true, expires at: 1747299761959
+[debug] [2025-05-15T08:03:39.884Z] Checked if tokens are valid: true, expires at: 1747299761959
+[info] i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+[debug] [2025-05-15T08:03:39.884Z] Checked if tokens are valid: true, expires at: 1747299761959
+[debug] [2025-05-15T08:03:39.885Z] Checked if tokens are valid: true, expires at: 1747299761959
+[info] i  artifactregistry: ensuring required API artifactregistry.googleapis.com is enabled... 
+[debug] [2025-05-15T08:03:39.885Z] Checked if tokens are valid: true, expires at: 1747299761959
+[debug] [2025-05-15T08:03:39.885Z] Checked if tokens are valid: true, expires at: 1747299761959
+[debug] [2025-05-15T08:03:39.885Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/housed-app/services/cloudfunctions.googleapis.com [none]
+[debug] [2025-05-15T08:03:39.885Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/housed-app/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/housed-app
+[debug] [2025-05-15T08:03:39.887Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/housed-app/services/runtimeconfig.googleapis.com [none]
+[debug] [2025-05-15T08:03:39.887Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/housed-app/services/runtimeconfig.googleapis.com x-goog-quota-user=projects/housed-app
+[debug] [2025-05-15T08:03:39.888Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/housed-app/services/cloudbuild.googleapis.com [none]
+[debug] [2025-05-15T08:03:39.888Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/housed-app/services/cloudbuild.googleapis.com x-goog-quota-user=projects/housed-app
+[debug] [2025-05-15T08:03:39.889Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/housed-app/services/artifactregistry.googleapis.com [none]
+[debug] [2025-05-15T08:03:39.889Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/housed-app/services/artifactregistry.googleapis.com x-goog-quota-user=projects/housed-app
+[debug] [2025-05-15T08:03:40.855Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/housed-app/services/artifactregistry.googleapis.com 200
+[debug] [2025-05-15T08:03:40.855Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/housed-app/services/artifactregistry.googleapis.com [omitted]
+[info] ✔  artifactregistry: required API artifactregistry.googleapis.com is enabled 
+[debug] [2025-05-15T08:03:40.856Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/housed-app/services/cloudbuild.googleapis.com 200
+[debug] [2025-05-15T08:03:40.856Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/housed-app/services/cloudbuild.googleapis.com [omitted]
+[info] ✔  functions: required API cloudbuild.googleapis.com is enabled 
+[debug] [2025-05-15T08:03:40.857Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/housed-app/services/runtimeconfig.googleapis.com 200
+[debug] [2025-05-15T08:03:40.857Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/housed-app/services/runtimeconfig.googleapis.com [omitted]
+[debug] [2025-05-15T08:03:40.861Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/housed-app/services/cloudfunctions.googleapis.com 200
+[debug] [2025-05-15T08:03:40.861Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/housed-app/services/cloudfunctions.googleapis.com [omitted]
+[info] ✔  functions: required API cloudfunctions.googleapis.com is enabled 
+[debug] [2025-05-15T08:03:40.861Z] Checked if tokens are valid: true, expires at: 1747299761959
+[debug] [2025-05-15T08:03:40.861Z] Checked if tokens are valid: true, expires at: 1747299761959
+[debug] [2025-05-15T08:03:40.861Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/housed-app/adminSdkConfig [none]
+[debug] [2025-05-15T08:03:41.339Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/housed-app/adminSdkConfig 200
+[debug] [2025-05-15T08:03:41.340Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/housed-app/adminSdkConfig {"projectId":"housed-app","storageBucket":"housed-app.firebasestorage.app"}
+[debug] [2025-05-15T08:03:41.340Z] Checked if tokens are valid: true, expires at: 1747299761959
+[debug] [2025-05-15T08:03:41.340Z] Checked if tokens are valid: true, expires at: 1747299761959
+[debug] [2025-05-15T08:03:41.341Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/housed-app/configs [none]
+[debug] [2025-05-15T08:03:41.725Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/housed-app/configs 200
+[debug] [2025-05-15T08:03:41.725Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/housed-app/configs {}
+[debug] [2025-05-15T08:03:41.728Z] Validating nodejs source
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] ⚠  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2025-05-15T08:03:42.369Z] > [functions] package.json contents: {
+  "name": "functions",
+  "engines": {
+    "node": "20"
+  },
+  "dependencies": {
+    "@sendgrid/mail": "^8.1.5",
+    "cors": "^2.8.5",
+    "firebase-admin": "^11.11.1",
+    "firebase-functions": "^5.1.1"
+  }
+}
+[debug] [2025-05-15T08:03:42.369Z] Building nodejs source
+[info] i  functions: Loading and analyzing source code for codebase default to determine what to deploy 
+[debug] [2025-05-15T08:03:42.369Z] Could not find functions.yaml. Must use http discovery
+[debug] [2025-05-15T08:03:42.375Z] Found firebase-functions binary at '/Users/williampeytz/Documents/GitHub/StudentHome/functions/node_modules/.bin/firebase-functions'
+[info] Serving at port 8973
+
+[debug] [2025-05-15T08:03:42.665Z] Got response from /__/functions.yaml {"endpoints":{"addToWaitlist":{"platform":"gcfv1","availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"serviceAccountEmail":null,"vpc":null,"httpsTrigger":{},"entryPoint":"addToWaitlist"}},"specVersion":"v1alpha1","requiredAPIs":[],"extensions":{}}
+[info] i  extensions: ensuring required API firebaseextensions.googleapis.com is enabled... 
+[debug] [2025-05-15T08:03:42.677Z] Checked if tokens are valid: true, expires at: 1747299761959
+[debug] [2025-05-15T08:03:42.677Z] Checked if tokens are valid: true, expires at: 1747299761959
+[debug] [2025-05-15T08:03:42.677Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/housed-app/services/firebaseextensions.googleapis.com [none]
+[debug] [2025-05-15T08:03:42.677Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/housed-app/services/firebaseextensions.googleapis.com x-goog-quota-user=projects/housed-app
+[debug] [2025-05-15T08:03:43.611Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/housed-app/services/firebaseextensions.googleapis.com 200
+[debug] [2025-05-15T08:03:43.612Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/housed-app/services/firebaseextensions.googleapis.com [omitted]
+[info] ✔  extensions: required API firebaseextensions.googleapis.com is enabled 
+[debug] [2025-05-15T08:03:43.612Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-05-15T08:03:43.613Z] > authorizing via signed-in user (contact@studenthome.dk)
+[debug] [2025-05-15T08:03:43.613Z] [iam] checking project housed-app for permissions ["firebase.projects.get","firebaseextensions.instances.list"]
+[debug] [2025-05-15T08:03:43.613Z] Checked if tokens are valid: true, expires at: 1747299761959
+[debug] [2025-05-15T08:03:43.613Z] Checked if tokens are valid: true, expires at: 1747299761959
+[debug] [2025-05-15T08:03:43.613Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/housed-app:testIamPermissions [none]
+[debug] [2025-05-15T08:03:43.613Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/housed-app:testIamPermissions x-goog-quota-user=projects/housed-app
+[debug] [2025-05-15T08:03:43.613Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/housed-app:testIamPermissions {"permissions":["firebase.projects.get","firebaseextensions.instances.list"]}
+[debug] [2025-05-15T08:03:43.849Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/housed-app:testIamPermissions 200
+[debug] [2025-05-15T08:03:43.849Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/housed-app:testIamPermissions {"permissions":["firebase.projects.get","firebaseextensions.instances.list"]}
+[debug] [2025-05-15T08:03:43.850Z] Checked if tokens are valid: true, expires at: 1747299761959
+[debug] [2025-05-15T08:03:43.850Z] Checked if tokens are valid: true, expires at: 1747299761959
+[debug] [2025-05-15T08:03:43.851Z] >>> [apiv2][query] GET https://firebaseextensions.googleapis.com/v1beta/projects/housed-app/instances pageSize=100&pageToken=
+[debug] [2025-05-15T08:03:44.746Z] <<< [apiv2][status] GET https://firebaseextensions.googleapis.com/v1beta/projects/housed-app/instances 200
+[debug] [2025-05-15T08:03:44.746Z] <<< [apiv2][body] GET https://firebaseextensions.googleapis.com/v1beta/projects/housed-app/instances {}
+[info] i  functions: Loaded environment variables from .env. 
+[info] i  functions: preparing functions directory for uploading... 
+[info] i  functions: packaged /Users/williampeytz/Documents/GitHub/StudentHome/functions (75.05 KB) for uploading 
+[debug] [2025-05-15T08:03:44.781Z] Checked if tokens are valid: true, expires at: 1747299761959
+[debug] [2025-05-15T08:03:44.781Z] Checked if tokens are valid: true, expires at: 1747299761959
+[debug] [2025-05-15T08:03:44.781Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v1/projects/housed-app/locations/-/functions [none]
