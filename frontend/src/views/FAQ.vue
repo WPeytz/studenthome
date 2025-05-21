@@ -30,7 +30,7 @@ export default {
         },
         {
           question: "Is StudentHome free to use?",
-          answer: "Yes! It's free for students. Landlords may have additional options available later.",
+          answer: "During the testing phase, StudentHome is completely free for students and landlords. We aim to keep it affordable for everyone.",
         },
         {
           question: "How do I get notified when a match is found?",

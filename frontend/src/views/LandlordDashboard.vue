@@ -1,6 +1,10 @@
 <template>
     <NavBar />
     <div class="dashboard">
+  <h1>Welcome to the StudentHome Landlord dashboard</h1>
+  <p>As a landlord, you can manage existing listings and add new listings here</p>
+  <p>We will send you an email when we launch and find a match for your listing</p>
+
   <h2>Your Listings</h2>
   <ul>
   <li v-for="listing in listings" :key="listing.id">
@@ -19,8 +23,6 @@
   <h3>Add New Listing</h3>
 <form @submit.prevent="addListing">
   <label>Address: <input v-model="newListing.propertyAddress" /></label><br />
-  <label>Description:</label>
-<textarea v-model="newListing.description" rows="4" placeholder="Enter detailed description..."></textarea><br /><br />
   <label>Monthly Rent: <input type="number" v-model="newListing.monthlyRent" /></label><br />
   <label>Preferred Move-in Date: <input type="date" v-model="newListing.moveInDate" /></label><br />
   <label>Acceptable Rental Duration:</label><br />
@@ -28,6 +30,9 @@
   <label><input type="checkbox" value="3-6 months" v-model="newListing.rentalDuration" /> 3-6 months</label><br />
   <label><input type="checkbox" value="6-12 months" v-model="newListing.rentalDuration" /> 6-12 months</label><br />
   <label><input type="checkbox" value="More than 12 months" v-model="newListing.rentalDuration" /> 12+ months</label><br />
+  <label>Additional information</label>
+        <p>Tell us about your property and what kind of tenants you’re looking for. Include anything that might help us match you with the right students. You can write in Danish or English. The more details you include, the better we can match your listing with ideal student tenants.</p>
+<textarea v-model="newListing.description" rows="4" placeholder="Enter detailed description..."></textarea><br /><br />
   <button type="submit">Add Listing</button>
 </form>
 </div>

@@ -16,6 +16,8 @@
       <button type="submit">Login</button>
     </form>
 
+    <p class="forgot-password" @click="resetPassword">Forgot Password?</p>
+
     <div v-if="errorMessage" class="error">{{ errorMessage }}</div>
   </div>
 </template>
@@ -27,6 +29,7 @@ import { auth } from '../firebaseConfig';
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from '../firebaseConfig';
+import { sendPasswordResetEmail } from "firebase/auth";
 
 export default {
   components: {
@@ -72,12 +75,39 @@ export default {
     this.errorMessage = 'Login failed. Please check your credentials.';
     console.error(error);
   }
+},
+async resetPassword() {
+  if (!this.email) {
+    this.errorMessage = "Please enter your email above first.";
+    return;
+  }
+
+  try {
+    await sendPasswordResetEmail(auth, this.email);
+    this.errorMessage = "Password reset email sent!";
+  } catch (error) {
+    console.error("Reset password error:", error);
+    this.errorMessage = "Could not send reset email. Check the address.";
+  }
 }
   }
 };
+
 </script>
 
 <style scoped>
+.forgot-password {
+  margin-top: 0.5rem;
+  color: #3498db;
+  text-align: right;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
 .login-container {
   max-width: 400px;
   margin: 0 auto;

@@ -4,20 +4,7 @@
     <h1>Contact Us</h1>
     <p>We’d love to hear from you. Whether you're a student, landlord, or just curious — drop us a message.</p>
 
-    <form @submit.prevent="handleSubmit">
-      <label for="name">Name</label>
-      <input type="text" id="name" v-model="form.name" required />
-
-      <label for="email">Email</label>
-      <input type="email" id="email" v-model="form.email" required />
-
-      <label for="message">Message</label>
-      <textarea id="message" v-model="form.message" rows="5" required></textarea>
-
-      <button type="submit">Send</button>
-    </form>
-
-    <p class="email-note">Or email us directly at <a href="mailto:contact@studenthome.dk">contact@studenthome.dk</a></p>
+    <p class="email-note">Send us an email at <a href="mailto:contact@studenthome.dk">contact@studenthome.dk</a></p>
   </div>
 </template>
 

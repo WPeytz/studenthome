@@ -102,7 +102,12 @@
       <button type="submit">Join as Landlord</button>
     </form>
 
-    <p class="thank-you" v-else>🎉 Thank you! We’ll be in touch soon.</p>
+    <p class="thank-you" v-else>🎉 Thank you! We’ll be in touch soon.
+      <br>
+      You are now on the waitlist to become a landlord on StudentHome.dk.
+      You can now log in to your account and manage your listings on the dashboard.
+    </p>
+
   </div>
 </template>
 

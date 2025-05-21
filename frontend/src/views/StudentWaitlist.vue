@@ -110,7 +110,12 @@
       <button type="submit">Join Waitlist</button>
     </form>
 
-    <p class="thank-you" v-if="submitted">Thanks! You're on the list 🏡</p>
+    <p class="thank-you" v-if="submitted">Thanks! You're on the list 🏡
+      <br>
+      You can now log in if you want to manage your application
+      <br>
+      Otherwise, we will send you an email when we launch and find a match for your application
+    </p>
   </div>
 </template>
 

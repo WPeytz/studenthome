@@ -1,6 +1,9 @@
 <template>
   <NavBar />
   <div class="dashboard">
+    <h1> Welcome to the StudentHome Student Dashboard</h1>
+    <p>As a student, you can edit your application and view your waitlist status here.</p>
+    <p>We will send you an email when we launch and find a match for your application.</p>
     <h2>Edit Your Application</h2>
     <form @submit.prevent="saveChanges">
       <label>
