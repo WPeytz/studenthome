@@ -116,9 +116,9 @@
 
 <script setup>
 import { ref } from 'vue'
-import NavBar from '@/components/NavBar.vue'
-import { db } from '@/firebaseConfig.js'; 
-import { collection, addDoc } from 'firebase/firestore';
+import { auth, db } from '@/firebaseConfig'
+import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { doc, setDoc } from 'firebase/firestore'
 
 
 const email = ref('')
@@ -136,26 +136,31 @@ const submitted = ref(false)
 const showTerms = ref(false)
 
 const handleSubmit = async () => {
-  const formData = {
-    email: email.value,
-    password: password.value,
-    name: name.value,
-    university: university.value,
-    housingType: housingType.value,
-    budget: budget.value,
-    moveInDate: moveInDate.value,
-    housingDuration: housingDuration.value,
-    description: description.value,
-    referralSource: referralSource.value,
-    agreedToTerms: agreedToTerms.value
-  };
-
   try {
-    await addDoc(collection(db, "studentWaitlist"), formData);
-    console.log("✅ Data submitted to Firestore");
+    // Step 1: Create user in Firebase Authentication
+    const userCredential = await createUserWithEmailAndPassword(auth, email.value, password.value);
+    const user = userCredential.user;
+
+    // Step 2: Save additional info in Firestore under studentWaitlist
+    await setDoc(doc(db, "studentWaitlist", user.uid), {
+      name: name.value,
+      email: email.value,
+      university: university.value,
+      housingType: housingType.value,
+      budget: budget.value,
+      moveInDate: moveInDate.value,
+      housingDuration: housingDuration.value,
+      description: description.value,
+      referralSource: referralSource.value,
+      agreedToTerms: agreedToTerms.value,
+      createdAt: new Date()
+    });
+
+    console.log("🎉 User registered and data saved.");
     submitted.value = true;
   } catch (error) {
-    console.error("❌ Error submitting to Firestore:", error);
+    console.error("🔥 Signup failed:", error);
+    alert("Signup failed: " + error.message);
   }
 };
 </script>

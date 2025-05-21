@@ -29,25 +29,13 @@
       </div>
 
       <div class="form-group">
-        <label>Your name</label>
-        <input v-model="name" type="text" placeholder="Your name" required />
+        <label>Your full name</label>
+        <input v-model="name" type="text" placeholder="Firstname Lastname" required />
       </div>
 
       <div class="form-group">
-        <label>Company/Dorm name</label>
-        <input v-model="companyName" type="text" placeholder="Company or dorm name" required />
-      </div>
-
-      <div class="form-group">
-        <label>Property type</label>
-        <select v-model="propertyType" required>
-          <option disabled value="">Select type</option>
-          <option>Apartment</option>
-          <option>House</option>
-          <option>Room in Apartment</option>
-          <option>Dorm Room</option>
-          <option>Other</option>
-        </select>
+        <label>Company/Dorm name (Optional)</label>
+        <input v-model="companyName" type="text" placeholder="Company or dorm name" />
       </div>
 
       <div class="form-group">
@@ -120,51 +108,64 @@
 
 <script setup>
 import NavBar from '@/components/NavBar.vue'
-import { ref } from 'vue'
-import { db } from '@/firebaseConfig.js'; 
-import { collection, addDoc } from 'firebase/firestore';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth, db } from '@/firebaseConfig';
+import { setDoc, doc } from 'firebase/firestore';
+import { ref } from 'vue';
+import { collection, addDoc } from "firebase/firestore";
 
-const email = ref('')
-const password = ref('')
-const landlordType = ref('')
-const name = ref('')
-const companyName = ref('')
-const propertyType = ref('')
-const propertyAddress = ref('')
-const monthlyRent = ref('')
-const moveInDate = ref('')
-const rentalDuration = ref([])
-const description = ref('')
-const referralSource = ref('')
-const agreedToTerms = ref(false)
-const submitted = ref(false)
-const showTerms = ref(false)
+const email = ref('');
+const password = ref('');
+const landlordType = ref('');
+const name = ref('');
+const companyName = ref('');
+const propertyAddress = ref('');
+const monthlyRent = ref(null);
+const moveInDate = ref('');
+const rentalDuration = ref([]);
+const description = ref('');
+const referralSource = ref('');
+const agreedToTerms = ref(false);
+const submitted = ref(false);
+const showTerms = ref(false);
 
 async function handleSubmit() {
-  const data = {
-    email: email.value,
-    password: password.value,
-    landlordType: landlordType.value,
-    name: name.value,
-    companyName: companyName.value,
-    propertyType: propertyType.value,
-    propertyAddress: propertyAddress.value,
-    monthlyRent: monthlyRent.value,
-    moveInDate: moveInDate.value,
-    rentalDuration: rentalDuration.value,
-    description: description.value,
-    referralSource: referralSource.value
-  }
-
-  console.log('Landlord submitted:', data)
-  submitted.value = true
-
-  // Save to Firestore
   try {
-    await addDoc(collection(db, 'landlords'), data)
-    console.log('Landlord data saved to Firestore')
+    // 1. Create user in Firebase Auth
+    const userCredential = await createUserWithEmailAndPassword(auth, email.value, password.value);
+    const user = userCredential.user;
+
+    // 2. Build the landlord profile (no password included!)
+    const landlordData = {
+      email: email.value,
+      landlordType: landlordType.value,
+      name: name.value,
+      companyName: companyName.value,
+      referralSource: referralSource.value,
+      agreedToTerms: agreedToTerms.value,
+      createdAt: new Date()
+    };
+
+    const listingData = {
+      propertyAddress: propertyAddress.value,
+      monthlyRent: monthlyRent.value,
+      moveInDate: moveInDate.value,
+      rentalDuration: rentalDuration.value,
+      description: description.value,
+      createdAt: new Date()
+    };
+
+    // 3. Save it to Firestore using the UID
+    await setDoc(doc(db, 'landlords', user.uid), landlordData);
+
+    // 4. Save the listing data in a sub-collection
+    await addDoc(collection(db, 'landlords', user.uid, 'listings'), listingData);
+
+    console.log('🎉 Landlord registered and data saved!');
+    submitted.value = true;
   } catch (error) {
-    console.error('Error saving landlord data:', error)
+    console.error('🔥 Error during landlord signup:', error);
+    alert('Signup failed: ' + error.message);
   }
 }
 </script>

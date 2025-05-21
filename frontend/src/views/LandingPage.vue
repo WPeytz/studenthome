@@ -9,20 +9,40 @@
     <p>Join our waitlist to be the first to know when we launch!</p>
     <p>We are still building our platform and would love to keep you updated.</p>
 
-<router-link to="/student">
-  <button class="router-button">Join the Student Waitlist</button>
-</router-link>
+<div class="info-cards">
+  <div class="info-card">
+    <h2>For Students</h2>
+    <p>Looking for a room near your university? Join our waitlist and be the first to know when listings are available.</p>
+    <router-link to="/student">
+      <button class="router-button">Join the Student Waitlist</button>
+    </router-link>
+    <h3> How it works:</h3>
+    <ul>
+      <li>Sign up for our waitlist</li>
+      <li>Get notified when we launch</li>
+      <li>Get matched and find your perfect student home</li>
+    </ul>
+  </div>
+  <div class="info-card">
+    <h2>For Landlords</h2>
+    <p>Have a student-friendly property to rent out? Sign up and match with verified students hassle-free.</p>
+    <router-link to="/landlord">
+      <button class="router-button">Join the Landlord Waitlist</button>
+    </router-link>
+    <h3> How it works:</h3>
+    <ul>
+      <li>List your room or property through the landlord list</li>
+      <li>Get notified when we launch</li>
+      <li>Match with ideal tenants</li>
+    </ul>
 
-<router-link to="/landlord">
-  <button class="router-button">Join the Landlord Waitlist</button>
-</router-link>
+  </div>
+</div>>
 
 </div>
 </template>
 
 <script>
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebaseConfig"; 
 import NavBar from '@/components/NavBar.vue';
 
 export default {
@@ -30,91 +50,51 @@ export default {
   components: {
     NavBar,
   },
-  data() {
-    return {
-      userType: 'student',
-      name: '',
-      email: '',
-      password: '',
-      university: '',
-      housingType: '',
-      budget: '',
-      moveInDate: '',
-      description: '',
-      agreedToTerms: false,
-      showTerms: false,
-      submitted: false,
-      landlordName: '',
-      landlordPhone: '',
-      landlordDescription: '',
-      landlordSubmitted: false
-    };
-  },
-  methods: {
-    async handleSubmit() {
-
-      try {
-        // Create Firebase user
-        const userCredential = await createUserWithEmailAndPassword(auth, this.email, this.password);
-        const userId = userCredential.user.uid; // Use it in your payload or logic
-
-        // After Auth, send form data to Firestore via your Cloud Function
-        const payload = {
-          name: this.name,
-          email: this.email,
-          university: this.university,
-          housingType: this.housingType,
-          budget: this.budget,
-          moveInDate: this.moveInDate,
-          description: this.description,
-          timestamp: new Date().toISOString(),
-          role: 'student',
-          uid: userId
-        };
-        await this.sendData(payload, 'submitted');
-
-            } catch (error) {
-        console.error("Firebase Auth Error:", error);
-        alert("Signup failed: " + error.message);
-      }
-    },
-    async handleLandlordSubmit() {
-      const payload = {
-        name: this.landlordName,
-        email: this.email,
-        description: this.landlordDescription,
-        timestamp: new Date().toISOString(),
-        role: 'landlord'
-      };
-      await this.sendData(payload, 'landlordSubmitted');
-    },
-      goToLogin() {
-    window.location.href = '/login'; // Change this to your actual login route
-  },    
-    async sendData(payload, flag) {
-      try {
-        const res = await fetch('https://us-central1-housed-app.cloudfunctions.net/addToWaitlist', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(payload)
-        });
-        if (res.ok) {
-          this[flag] = true;
-        } else {
-          alert('Something went wrong. Try again later.');
-        }
-      } catch (err) {
-        console.error(err);
-        alert('Error contacting server.');
-      }
-    }
-  }
 }
 </script>
 
 <style scoped>
+
+.landing-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 3rem 1rem;
+  text-align: center;
+}
+
+.info-cards {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.info-card {
+  flex: 1 1 calc(50% - 1rem);
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: left;
+}
+
+.info-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.info-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  max-width: 300px;
+  text-align: left;
+}
 
 .router-button {
   padding: 0.75rem 1.5rem;
@@ -193,11 +173,6 @@ export default {
   border-radius: 4px;
   cursor: pointer;
 }
-
-.landing-container.landlord-mode {
-  background-color: #f9f4ef; /* soft beige, tweak as needed */
-}
-
 .user-toggle {
   display: flex;
   justify-content: center;
@@ -240,14 +215,6 @@ export default {
   font-size: 1rem;
   border-radius: 4
 }
-
-.landing-container {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 3rem 1rem;
-  text-align: center;
-}
-
 h1 {
   color: #2c3e50;
   font-size: 2.5rem;

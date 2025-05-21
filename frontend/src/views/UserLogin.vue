@@ -1,27 +1,37 @@
 <template>
+  <NavBar />
   <div class="login-container">
     <h2>Login</h2>
     <form @submit.prevent="login">
       <div class="form-group">
-        <label for="email">Email:</label>
-        <input v-model="email" type="email" id="email" required />
+        <label for="email">Email</label>
+        <input type="email" v-model="email" id="email" required />
       </div>
+
       <div class="form-group">
-        <label for="password">Password:</label>
-        <input v-model="password" type="password" id="password" required />
+        <label for="password">Password</label>
+        <input type="password" v-model="password" id="password" required />
       </div>
+
       <button type="submit">Login</button>
     </form>
-    <p v-if="errorMessage" class="error">{{ errorMessage }}</p>
+
+    <div v-if="errorMessage" class="error">{{ errorMessage }}</div>
   </div>
 </template>
 
 <script>
 // src/views/UserLogin.vue
+import NavBar from '@/components/NavBar.vue';
 import { auth } from '../firebaseConfig';
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from '../firebaseConfig';
 
 export default {
+  components: {
+    NavBar
+  },
   data() {
     return {
       email: '',
@@ -31,14 +41,38 @@ export default {
   },
   methods: {
     async login() {
-      try {
-        await signInWithEmailAndPassword(auth, this.email, this.password);
-        this.$router.push('/UserDashboard'); // or redirect wherever
-      } catch (error) {
-        this.errorMessage = 'Login failed. Please check your credentials.';
-        console.error(error);
-      }
+  try {
+    const userCredential = await signInWithEmailAndPassword(auth, this.email, this.password);
+    const user = userCredential.user;
+
+    // Check if user is a student
+    const studentRef = doc(db, "studentWaitlist", user.uid);
+    const studentSnap = await getDoc(studentRef);
+
+    if (studentSnap.exists()) {
+      console.log("Student logged in.");
+      this.$router.push('/StudentDashboard');
+      return;
     }
+
+    // Check if user is a landlord
+    const landlordRef = doc(db, "landlords", user.uid);
+    const landlordSnap = await getDoc(landlordRef);
+
+    if (landlordSnap.exists()) {
+      console.log("Landlord logged in.");
+      this.$router.push('/LandlordDashboard');
+      return;
+    }
+
+    // If neither, maybe they exist in Auth but not Firestore
+    this.errorMessage = "User profile not found in Firestore.";
+    console.warn("No matching student or landlord document.");
+  } catch (error) {
+    this.errorMessage = 'Login failed. Please check your credentials.';
+    console.error(error);
+  }
+}
   }
 };
 </script>
